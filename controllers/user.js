@@ -2,7 +2,7 @@ const userModel=require('../models/user')
 
 const getUsers=async(req,res)=>{
     try{
-        const getUsers=await userModel.find()
+        const getUsers=await userModel.find().limit(5)
         res.status(200).json(getUsers)
     }catch(err){
         console.log(err);

@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const user=require('./routes/user')
 const auth=require('./routes/auth')
 const cookieParser=require('cookie-parser')
+const cors=require('cors')
 require('./dbConnect')
 dotenv.config()
 
@@ -12,6 +13,11 @@ const port=process.env.PORT || 8000
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    origin:"*",
+    credentials:true,
+    methods:["POST", "GET", "PUT", "PATCH", "DELETE"]
+}))
 
 app.use('/api/exercise', exercise)
 app.use('/api/user',user)
